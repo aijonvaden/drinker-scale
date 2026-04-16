@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Legendary Drinker Scale</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --cream: #f5f0e8;
+    --dark: #1a1208;
+    --brown: #3d2b0a;
+    --amber: #8b5e0a;
+    --ink: #2a1f0e;
+    --red: #8b1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(ellipse at 20% 50%, rgba(139,94,10,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.08) 0%, transparent 50%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .page-wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+  }
+
+  .rule {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 18px 0;
+  }
+
+  .rule-double {
+    position: relative;
+    margin: 20px 0;
+  }
+  .rule-double::before, .rule-double::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+  .rule-double::after { margin-top: 4px; }
+
+  .masthead-label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    color: var(--cream);
+    text-shadow: 0 2px 40px rgba(201,168,76,0.3);
+    margin: 12px 0 6px;
+  }
+
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  /* FORM */
+  .calculator {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 48px 44px;
+    position: relative;
+    margin-bottom: 48px;
+  }
+
+  .calculator::before {
+    content: '◆';
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark);
+    padding: 0 12px;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .drink-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+    margin-bottom: 36px;
+  }
+
+  .drink-field label {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+    margin-bottom: 8px;
+  }
+
+  .drink-field .sublabel {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    opacity: 0.4;
+    margin-bottom: 8px;
+    display: block;
+    font-style: italic;
+  }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+  }
+
+  .input-row input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    width: 80px;
+    padding: 4px 0;
+    text-align: left;
+  }
+
+  .input-row input::-webkit-inner-spin-button,
+  .input-row input::-webkit-outer-spin-button { opacity: 0; }
+
+  .input-unit {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  .duration-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-top: 8px;
+  }
+
+  .duration-row label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+    white-space: nowrap;
+  }
+
+  .duration-row input[type=range] {
+    flex: 1;
+    appearance: none;
+    height: 2px;
+    background: rgba(201,168,76,0.25);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .duration-row input[type=range]::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(201,168,76,0.6);
+  }
+
+  .duration-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    width: 60px;
+    text-align: right;
+  }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn:hover {
+    background: var(--gold-light);
+    box-shadow: 0 0 30px rgba(201,168,76,0.4);
+    letter-spacing: 0.45em;
+  }
+
+  .cta-btn:active { transform: scale(0.99); }
+
+  /* RESULT */
+  #result {
+    display: none;
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-card {
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 44px;
+    position: relative;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .result-card::after {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(201,168,76,0.1);
+    pointer-events: none;
+  }
+
+  .verdict-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 20px;
+  }
+
+  .legend-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+    font-weight: 900;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 60px rgba(201,168,76,0.4);
+  }
+
+  .legend-era {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 28px;
+  }
+
+  .legend-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    filter: grayscale(30%);
+    display: block;
+  }
+
+  .verdict-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.85;
+    max-width: 480px;
+    margin: 0 auto 28px;
+  }
+
+  .stats-strip {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 0;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin: 24px 0;
+  }
+
+  .stat { text-align: center; }
+  .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+  }
+  .stat-lbl {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.45;
+  }
+
+  .percentile-bar {
+    margin-top: 24px;
+    position: relative;
+  }
+
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.4;
+    margin-bottom: 8px;
+  }
+
+  .bar-track {
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    overflow: visible;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--amber), var(--gold));
+    transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    position: relative;
+  }
+
+  .bar-fill::after {
+    content: '';
+    position: absolute;
+    right: -1px; top: -3px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 12px var(--gold);
+  }
+
+  .try-again {
+    margin-top: 36px;
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .try-again:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    opacity: 0.25;
+    text-transform: uppercase;
+    line-height: 2;
+  }
+
+  /* ANALYSER PANEL */
+  .analyser {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 48px 44px;
+    position: relative;
+    margin-bottom: 48px;
+  }
+
+  .analyser::before {
+    content: '◆';
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--dark);
+    padding: 0 12px;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .analyser-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .analyser-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .analyser-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  .medium-toggle {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .medium-btn {
+    flex: 1;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    color: var(--cream);
+    opacity: 0.45;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .medium-btn.active {
+    background: rgba(201,168,76,0.12);
+    color: var(--gold-light);
+    opacity: 1;
+  }
+
+  .medium-btn + .medium-btn {
+    border-left: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .source-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(201,168,76,0.4);
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9rem;
+    padding: 8px 0;
+    outline: none;
+    margin-bottom: 16px;
+  }
+
+  .source-input::placeholder {
+    color: var(--cream);
+    opacity: 0.25;
+    font-style: italic;
+  }
+
+  .text-area-wrap {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .text-input {
+    width: 100%;
+    min-height: 140px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--cream);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    padding: 16px;
+    outline: none;
+    resize: vertical;
+  }
+
+  .text-input::placeholder {
+    color: var(--cream);
+    opacity: 0.22;
+    font-style: italic;
+  }
+
+  .char-count {
+    position: absolute;
+    bottom: 8px; right: 12px;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    opacity: 0.25;
+  }
+
+  .analyse-btn {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .analyse-btn:hover:not(:disabled) {
+    background: rgba(201,168,76,0.1);
+    box-shadow: 0 0 20px rgba(201,168,76,0.2);
+    letter-spacing: 0.42em;
+  }
+
+  .analyse-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .analysis-result {
+    margin-top: 32px;
+    animation: fadeIn 0.5s ease;
+    display: none;
+  }
+
+  .analysis-result.visible { display: block; }
+
+  .analysis-tally {
+    display: flex;
+    gap: 0;
+    margin-bottom: 28px;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .tally-cell {
+    flex: 1;
+    padding: 20px 12px;
+    text-align: center;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .tally-cell:last-child { border-right: none; }
+
+  .tally-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .tally-lbl {
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.4;
+  }
+
+  .drink-log {
+    margin-bottom: 24px;
+  }
+
+  .drink-log-title {
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 14px;
+  }
+
+  .drink-entry {
+    display: flex;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+
+  .drink-entry:last-child { border-bottom: none; }
+
+  .drink-who {
+    color: var(--gold-light);
+    min-width: 100px;
+    font-style: italic;
+    opacity: 0.85;
+    flex-shrink: 0;
+  }
+
+  .drink-what { color: var(--cream); opacity: 0.8; }
+
+  .analysis-verdict {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--cream);
+    opacity: 0.85;
+    padding: 20px;
+    border-left: 2px solid rgba(201,168,76,0.4);
+    margin-top: 20px;
+  }
+
+  .loading-state {
+    text-align: center;
+    padding: 40px 0;
+    display: none;
+  }
+
+  .loading-state.visible { display: block; }
+
+  .loading-dots {
+    display: inline-flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .loading-dots span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes pulse {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  .loading-text {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  .send-to-calc {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px;
+    background: var(--gold);
+    color: var(--dark);
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .send-to-calc:hover {
+    background: var(--gold-light);
+  }
+
+  /* ── ADS ── */
+  .ad-strip {
+    margin: 0 0 56px;
+  }
+
+  .ad-strip-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    opacity: 0.2;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .ad-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 600px) {
+    .ad-grid { grid-template-columns: 1fr; }
+  }
+
+  .ad-card {
+    border: 1px solid rgba(201,168,76,0.18);
+    padding: 28px 22px;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.25s;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .ad-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .ad-card:hover {
+    border-color: rgba(201,168,76,0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
+  .ad-card:hover::before { opacity: 1; }
+
+  .ad-sponsor {
+    font-size: 0.52rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.55;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .ad-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--cream);
+    margin-bottom: 10px;
+    display: block;
+    line-height: 1.1;
+  }
+
+  .ad-rule {
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.4), transparent);
+    margin: 10px 0 12px;
+  }
+
+  .ad-copy {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.72rem;
+    line-height: 1.6;
+    color: var(--cream);
+    opacity: 0.6;
+    margin-bottom: 14px;
+  }
+
+  .ad-cta {
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.2s, gap 0.2s;
+  }
+
+  .ad-card:hover .ad-cta {
+    opacity: 1;
+    gap: 10px;
+  }
+
+  .ad-icon {
+    font-size: 1.6rem;
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    opacity: 0.12;
+    transition: opacity 0.25s;
+  }
+
+  .ad-card:hover .ad-icon { opacity: 0.22; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <header>
+    <p class="masthead-label">An Impartial Assessment of Your</p>
+    <div class="rule"></div>
+    <h1>Legendary Drinker Scale</h1>
+    <p class="subtitle">Where do you rank among history's great consumers?</p>
+    <div class="rule-double"></div>
+  </header>
+
+  <div class="calculator" id="calc-form">
+    <p class="section-title">— Log Your Evening's Intake —</p>
+
+    <div class="drink-grid">
+      <div class="drink-field">
+        <label>Beers</label>
+        <span class="sublabel">12 oz / standard pint</span>
+        <div class="input-row">
+          <input type="number" id="beers" min="0" max="200" value="0">
+          <span class="input-unit">cans</span>
+        </div>
+      </div>
+      <div class="drink-field">
+        <label>Shots / Spirits</label>
+        <span class="sublabel">1.5 oz per shot</span>
+        <div class="input-row">
+          <input type="number" id="shots" min="0" max="100" value="0">
+          <span class="input-unit">shots</span>
+        </div>
+      </div>
+      <div class="drink-field">
+        <label>Wine</label>
+        <span class="sublabel">5 oz glass</span>
+        <div class="input-row">
+          <input type="number" id="wine" min="0" max="100" value="0">
+          <span class="input-unit">glasses</span>
+        </div>
+      </div>
+      <div class="drink-field">
+        <label>Cocktails</label>
+        <span class="sublabel">mixed drinks, martinis</span>
+        <div class="input-row">
+          <input type="number" id="cocktails" min="0" max="100" value="0">
+          <span class="input-unit">drinks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="duration-row">
+      <label>Duration</label>
+      <input type="range" id="duration" min="1" max="24" value="4" oninput="document.getElementById('dur-val').textContent = this.value + ' hrs'">
+      <span class="duration-val" id="dur-val">4 hrs</span>
+    </div>
+
+    <button class="cta-btn" onclick="calculate()">▸ &nbsp; Render Verdict</button>
+  </div>
+
+  <div id="result"></div>
+
+  <!-- DIVIDER -->
+  <div style="margin: 64px 0 56px; text-align:center;">
+    <div class="rule-double"></div>
+    <p class="masthead-label" style="margin-top:18px;">Also Available from This Establishment</p>
+  </div>
+
+  <!-- AD STRIP 1 — between calculator and analyser -->
+  <div class="ad-strip">
+    <p class="ad-strip-label">— Supported by —</p>
+    <div class="ad-grid">
+
+      <a class="ad-card" href="YOUR_VISKI_AFFILIATE_LINK" target="_blank" rel="noopener sponsored">
+        <span class="ad-sponsor">Sponsored</span>
+        <span class="ad-logo">Viski</span>
+        <div class="ad-rule"></div>
+        <p class="ad-copy">Churchill drank from crystal. You should too. Weighted base glassware and gold-plated bar tools for the discerning consumer.</p>
+        <span class="ad-cta">Shop the Collection →</span>
+        <span class="ad-icon">🥃</span>
+      </a>
+
+      <a class="ad-card" href="YOUR_COCKTAIL_KINGDOM_AFFILIATE_LINK" target="_blank" rel="noopener sponsored">
+        <span class="ad-sponsor">Sponsored</span>
+        <span class="ad-logo">Cocktail Kingdom</span>
+        <div class="ad-rule"></div>
+        <p class="ad-copy">The tools Nick Charles would have used. Professional-grade bar equipment, vintage recipe books, and bitters worth seeking out.</p>
+        <span class="ad-cta">Equip Yourself →</span>
+        <span class="ad-icon">🍸</span>
+      </a>
+
+      <a class="ad-card" href="YOUR_FEVER_TREE_AFFILIATE_LINK" target="_blank" rel="noopener sponsored">
+        <span class="ad-sponsor">Sponsored</span>
+        <span class="ad-logo">Fever-Tree</span>
+        <div class="ad-rule"></div>
+        <p class="ad-copy">If three-quarters of your drink is the mixer, make it count. Premium tonics and sodas. Bond would insist on it.</p>
+        <span class="ad-cta">Find Your Mixer →</span>
+        <span class="ad-icon">🫧</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ANALYSER PANEL -->
+  <div class="analyser">
+    <div class="analyser-header">
+      <h2 class="analyser-title">The Drink Census</h2>
+      <p class="analyser-sub">— Count Every Drop in Any Song, Film, or Scene —</p>
+    </div>
+
+    <div class="medium-toggle">
+      <button class="medium-btn active" onclick="setMedium('song', this)">🎵 &nbsp;Song Lyrics</button>
+      <button class="medium-btn" onclick="setMedium('film', this)">🎬 &nbsp;Film / Scene</button>
+      <button class="medium-btn" onclick="setMedium('book', this)">📖 &nbsp;Book Passage</button>
+    </div>
+
+    <input type="text" class="source-input" id="source-title" placeholder="Title / source (e.g. Casablanca, Tubthumping, The Thin Man)…">
+
+    <div class="text-area-wrap">
+      <textarea class="text-input" id="source-text" placeholder="Paste lyrics, a transcript, scene description, or passage here…" oninput="updateCharCount(this)"></textarea>
+      <span class="char-count" id="char-count">0 chars</span>
+    </div>
+
+    <button class="analyse-btn" id="analyse-btn" onclick="runAnalysis()">▸ &nbsp; Conduct the Census</button>
+
+    <div class="loading-state" id="loading-state">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <p class="loading-text">Counting every drop…</p>
+    </div>
+
+    <div class="analysis-result" id="analysis-result"></div>
+  </div>
+
+  <!-- AD STRIP 2 — before footer, different brands -->
+  <div class="ad-strip" style="margin-top:64px;">
+    <p class="ad-strip-label">— Further Recommendations —</p>
+    <div class="ad-grid">
+
+      <a class="ad-card" href="YOUR_TRADER_VICS_LINK" target="_blank" rel="noopener sponsored">
+        <span class="ad-sponsor">Sponsored</span>
+        <span class="ad-logo">Trader Vic's</span>
+        <div class="ad-rule"></div>
+        <p class="ad-copy">Inventors of the Mai Tai. Since 1934. Find a location, or bring the tiki home. Some evenings call for a paper umbrella.</p>
+        <span class="ad-cta">Book a Table →</span>
+        <span class="ad-icon">🌺</span>
+      </a>
+
+      <a class="ad-card" href="YOUR_COCKTAIL_KINGDOM_BOOKS_LINK" target="_blank" rel="noopener sponsored">
+        <span class="ad-sponsor">Sponsored</span>
+        <span class="ad-logo">Cocktail Kingdom</span>
+        <div class="ad-rule"></div>
+        <p class="ad-copy">The Savoy Cocktail Book. The Stork Club Bar Book. Literature for those who drink with intention. The library Rick Blaine deserved.</p>
+        <span class="ad-cta">Browse the Library →</span>
+        <span class="ad-icon">📖</span>
+      </a>
+
+      <a class="ad-card" href="YOUR_DRIZLY_AFFILIATE_LINK" target="_blank" rel="noopener sponsored">
+        <span class="ad-sponsor">Sponsored</span>
+        <span class="ad-logo">Drizly</span>
+        <div class="ad-rule"></div>
+        <p class="ad-copy">You've just calculated you're running short. Delivery in under 60 minutes. André would have used this service constantly.</p>
+        <span class="ad-cta">Order Now →</span>
+        <span class="ad-icon">🚚</span>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    For entertainment purposes only &nbsp;·&nbsp; Drink responsibly &nbsp;·&nbsp; Know your limits<br>
+    The Legendary Drinker Scale © 2026
+  </footer>
+</div>
+
+<script>
+const LEGENDS = [
+  {
+    name: "A Teetotaller",
+    era: "Of Sound Mind & Body",
+    icon: "🥛",
+    minUnits: 0,
+    maxUnits: 0.9,
+    percentile: 1,
+    verdict: "You consumed so little that we fear you may have wandered in by mistake. The bar is that way, friend. No shame — the Romans built an empire on water. Allegedly.",
+    category: "abstainer"
+  },
+  {
+    name: "Pinocchio",
+    era: "Fictional Wooden Boy, Pleasure Island Incident",
+    icon: "🪵",
+    minUnits: 1,
+    maxUnits: 1.9,
+    percentile: 8,
+    verdict: "One beer on Pleasure Island, and already your ears are growing. Pinocchio's acquaintance with alcohol was brief, transformative, and immediately punished by donkey-related metamorphosis. You are at the very threshold of consequence. Tread carefully.",
+    category: "cautionary"
+  },
+  {
+    name: "The Designated Driver",
+    era: "Sober Patron Saint",
+    icon: "🚗",
+    minUnits: 2,
+    maxUnits: 3.4,
+    percentile: 16,
+    verdict: "A glass or two, nursed with quiet dignity. You are responsible, sensible, and frankly a little boring at parties. Your liver thanks you. Your friends do not.",
+    category: "light"
+  },
+  {
+    name: "E.T.",
+    era: "Extraterrestrial, Earth Visit 1982",
+    icon: "👽",
+    minUnits: 3.5,
+    maxUnits: 5.4,
+    percentile: 28,
+    verdict: "E.T. consumed several of Elliott's beers, became visibly intoxicated, and — crucially — transmitted the entire experience telepathically to a ten-year-old boy across town. You are drinking at alien levels: not heroic, but with remarkable cross-species reach. Phone home. You've had enough.",
+    category: "otherworldly"
+  },
+  {
+    name: "The Casual Enjoyer",
+    era: "Standard-Issue Reveler",
+    icon: "🍺",
+    minUnits: 5.5,
+    maxUnits: 7.9,
+    percentile: 38,
+    verdict: "A respectable evening's work — enough to feel warm, charming, perhaps wise. This is the civilized mean, the Goldilocks zone of drinking. Neither legend nor amateur. You will remember tonight. Mostly.",
+    category: "moderate"
+  },
+  {
+    name: "Rick Blaine",
+    era: "Café Américain, Casablanca, 1941",
+    icon: "🥂",
+    minUnits: 8,
+    maxUnits: 10.4,
+    percentile: 44,
+    verdict: "Rick drinks alone, after hours, after the last customer has gone. He never drinks with the guests — that is his rule, and it is the saddest rule in cinema. He is not drunk; he is marinated in a particular variety of loss. You have reached the tier of elegant, purposeful, private drinking. Of all the gin joints in all the towns in all the world, you walked into this calculator.",
+    category: "cinematic"
+  },
+  {
+    name: "Chumbawamba",
+    era: "Tubthumping Era, 1997",
+    icon: "🎵",
+    minUnits: 10.5,
+    maxUnits: 13.9,
+    percentile: 47,
+    verdict: "You get knocked down, but you get up again. They're drinking a whisky drink, a vodka drink, a lager drink, a cider drink. This is not heroism — this is a shopping list sung by a political anarchist collective. You are cheerfully, indiscriminately committed. The song is about resilience. So is your evening.",
+    category: "tubthumping"
+  },
+  {
+    name: "Nick & Nora Charles",
+    era: "Manhattan & San Francisco, The Thin Man, 1934",
+    icon: "🍸",
+    minUnits: 14,
+    maxUnits: 17.9,
+    percentile: 57,
+    verdict: "Nick Charles is a retired detective who now drinks for sport. Nora, upon arriving at a party and finding Nick has had six martinis, immediately orders five more to catch up. They bicker, they sparkle, they solve murders without ever quite setting down their glasses. You are drinking with elegance, velocity, and excellent repartee. Are you also solving a murder? You should be.",
+    category: "cinematic"
+  },
+  {
+    name: "Ernest Hemingway",
+    era: "Author & Aficionado, 1899–1961",
+    icon: "✍️",
+    minUnits: 18,
+    maxUnits: 21.9,
+    percentile: 56,
+    verdict: "You drink like a man who has things to say about it later. Mojitos in Havana. Daiquiris in Key West. A certain brooding intensity in your glassware. Hemingway reportedly drank to write — or wrote to drink. You are doing both, spiritually.",
+    category: "literary"
+  },
+  {
+    name: "Jeffrey Bernard",
+    era: "Spectator Columnist & Soho Legend, 1932–1997",
+    icon: "📰",
+    minUnits: 15,
+    maxUnits: 19.9,
+    percentile: 63,
+    verdict: "Jeffrey Bernard wrote his Low Life column for the Spectator for decades — a weekly account of drinking in Soho's Coach and Horses pub. When he was too drunk to file, the magazine ran the notice: 'Jeffrey Bernard is unwell.' You are, tonight, unwell. It is a distinction.",
+    category: "literary"
+  },
+  {
+    name: "Brendan Behan",
+    era: "Irish Playwright & Declared Drinker, 1923–1964",
+    icon: "🎭",
+    minUnits: 20,
+    maxUnits: 25.9,
+    percentile: 68,
+    verdict: "Behan famously described himself as a drinker with a writing problem. He once arrived drunk to a BBC television interview and became the first person to use profanity on British television. He considered this an achievement. Tonight, so do you.",
+    category: "theatrical"
+  },
+  {
+    name: "James Bond",
+    era: "Her Majesty's Secret Service, Licensed to Drink",
+    icon: "🔫",
+    minUnits: 26,
+    maxUnits: 31.9,
+    percentile: 74,
+    verdict: "Fleming catalogued Bond's drinking with a statistician's rigour. The vodka martini — shaken, not stirred — is merely the public-facing brand. In the novels he drinks continuously, specifically, and in quantities a 2013 BMJ study calculated at four times the recommended weekly limit per day. He nonetheless outruns, outfights, and outmanoeuvres everyone. You are operating at licensed-to-thrill capacity. Do try not to get in a car.",
+    category: "cinematic"
+  },
+  {
+    name: "Winston Churchill",
+    era: "Prime Minister & Prodigious Consumer, 1874–1965",
+    icon: "🎩",
+    minUnits: 32,
+    maxUnits: 37.9,
+    percentile: 78,
+    verdict: "Statesmanlike levels achieved. Churchill reportedly drank Champagne at lunch, Scotch through the afternoon, and brandy at dinner — then ran an empire. When told his drinking was a problem, he reportedly said the room was full of better men than his critics. You have earned tonight.",
+    category: "statesmanlike"
+  },
+  {
+    name: "Babe Ruth",
+    era: "Sultan of Swat & Notorious Reveler, 1895–1948",
+    icon: "⚾",
+    minUnits: 38,
+    maxUnits: 44.9,
+    percentile: 83,
+    verdict: "Ruth drank throughout Prohibition with cheerful defiance, reportedly consuming enormous quantities the night before games and then hitting home runs anyway. His manager once said he had the constitution of a horse and the appetites of several. You are in distinguished athletic company.",
+    category: "sporting"
+  },
+  {
+    name: "George Best",
+    era: "Manchester United & Belfast's Finest, 1946–2005",
+    icon: "⚽",
+    minUnits: 45,
+    maxUnits: 52.9,
+    percentile: 87,
+    verdict: "Best once said he spent a lot of money on booze, birds, and fast cars — the rest he just squandered. He was one of the greatest footballers who ever lived, and he drank with equivalent commitment. Tonight, you have matched his pace if not his footwork.",
+    category: "sporting"
+  },
+  {
+    name: "Frank Sinatra",
+    era: "Chairman of the Board, 1915–1998",
+    icon: "🎷",
+    minUnits: 53,
+    maxUnits: 60.9,
+    percentile: 90,
+    verdict: "Jack Daniel's on the rocks, consumed with unshakeable cool. Sinatra reportedly demanded his Old No. 7 be waiting in every city, and was buried with a bottle of it. You have achieved Rat Pack pacing — classy, excessive, and entirely committed to the aesthetic of the thing.",
+    category: "legendary"
+  },
+  {
+    name: "Keith Moon",
+    era: "The Who, Hotel Destroyer, 1946–1978",
+    icon: "🥁",
+    minUnits: 61,
+    maxUnits: 71.9,
+    percentile: 93,
+    verdict: "Moon the Loon did not merely drink — he detonated. Cherry bombs in hotel toilets. Rolls-Royces in swimming pools. A Cadillac through a Holiday Inn wall. Drinking was simply the fuel for a broader programme of chaos. You have reached the altitude at which furniture becomes a liability.",
+    category: "destructive"
+  },
+  {
+    name: "Hunter S. Thompson",
+    era: "Gonzo Journalist & Pharmacological Pioneer, 1937–2005",
+    icon: "🦇",
+    minUnits: 72,
+    maxUnits: 84.9,
+    percentile: 96,
+    verdict: "Thompson's own published daily intake logs from Fear and Loathing are staggering — and alcohol was merely the foundation beneath a towering superstructure of other substances. He covered a presidential campaign this way. He won a sheriff's race this way. You are, tonight, going full Gonzo. We salute you and strongly advise you to stay away from bats.",
+    category: "gonzo"
+  },
+  {
+    name: "Oliver Reed",
+    era: "Actor & Legendary Carouser, 1938–1999",
+    icon: "🎬",
+    minUnits: 85,
+    maxUnits: 104.9,
+    percentile: 97,
+    verdict: "Oliver Reed reportedly drank 104 pints of beer during a single pub crawl in 1963. He arm-wrestled strangers, recited poetry, and insulted chat show hosts with regal authority. He died during a drinking session while filming Gladiator in Malta, having just beaten five Royal Marines at arm wrestling. He was 61. You are approaching his orbit.",
+    category: "olympian"
+  },
+  {
+    name: "Marion Ravenwood",
+    era: "Nepal, 1936 — Raiders of the Lost Ark",
+    icon: "🏺",
+    minUnits: 105,
+    maxUnits: 124.9,
+    percentile: 98,
+    verdict: "Marion Ravenwood runs a bar in the Himalayas and wins shots contests against large men for money. She does this professionally. She then survives kidnapping, the Ark of the Covenant, and Indiana Jones. If you have reached Marion's tier, you are not merely drinking — you are conducting yourself as a woman of extraordinary constitution in extraordinary circumstances. Respect.",
+    category: "cinematic"
+  },
+  {
+    name: "Spike the Gremlin",
+    era: "Clamp Enterprises Tower, 1990",
+    icon: "🦎",
+    minUnits: 125,
+    maxUnits: 149.9,
+    percentile: 99,
+    verdict: "Spike ordered a cocktail at a bar, went to a strip club, and then caused catastrophic structural damage to a skyscraper. He did this while being approximately the size of a housecat. The alcohol-to-chaos ratio is without precedent in recorded history. You are operating at Gremlin efficiency. After midnight. Someone fed you after midnight.",
+    category: "chaotic"
+  },
+  {
+    name: "Wade Boggs",
+    era: "Red Sox Third Baseman & Aviation Legend",
+    icon: "✈️",
+    minUnits: 150,
+    maxUnits: 199.9,
+    percentile: 99.5,
+    verdict: "Boggs claimed 64 beers on a cross-country flight and then hit .366 for a season. Teammates confirmed the broad strokes. The physiology is impossible to explain. The commitment is not. You have passed Gremlin, passed Marion, and entered the realm of professional athletic impossibility. Extraordinary.",
+    category: "heroic"
+  },
+  {
+    name: "André the Giant",
+    era: "Eighth Wonder of the World, 1946–1993",
+    icon: "🏔️",
+    minUnits: 200,
+    maxUnits: 99999,
+    percentile: 99.9,
+    verdict: "You have reached the summit. André reportedly consumed 100–150 beers in a sitting on multiple documented occasions. His acromegaly altered his metabolism in ways science has not fully explained. Fellow wrestlers, drivers, and travel companions all gave testimony. What is your excuse? There is none. You are simply a wonder of the world.",
+    category: "mythic"
+  }
+];
+
+function totalUnits() {
+  const beers = parseFloat(document.getElementById('beers').value) || 0;
+  const shots = parseFloat(document.getElementById('shots').value) || 0;
+  const wine = parseFloat(document.getElementById('wine').value) || 0;
+  const cocktails = parseFloat(document.getElementById('cocktails').value) || 0;
+
+  // Convert to standard UK units (8g alcohol) roughly
+  // Beer ~2.3 units, shot ~1, wine glass ~2.1, cocktail ~1.8
+  return (beers * 2.3) + (shots * 1) + (wine * 2.1) + (cocktails * 1.8);
+}
+
+function calculate() {
+  const units = totalUnits();
+  const hours = parseFloat(document.getElementById('duration').value);
+
+  if (units === 0) {
+    alert("You must enter at least one drink to be judged.");
+    return;
+  }
+
+  const legend = LEGENDS.find(l => units >= l.minUnits && units <= l.maxUnits) || LEGENDS[LEGENDS.length - 1];
+  const unitsPerHour = (units / hours).toFixed(1);
+  const totalDrinks = (
+    (parseFloat(document.getElementById('beers').value)||0) +
+    (parseFloat(document.getElementById('shots').value)||0) +
+    (parseFloat(document.getElementById('wine').value)||0) +
+    (parseFloat(document.getElementById('cocktails').value)||0)
+  );
+
+  const resultEl = document.getElementById('result');
+  resultEl.style.display = 'block';
+  resultEl.innerHTML = `
+    <div class="result-card">
+      <p class="verdict-label">— Your Legend Equivalent —</p>
+      <span class="legend-icon">${legend.icon}</span>
+      <h2 class="legend-name">${legend.name}</h2>
+      <p class="legend-era">${legend.era}</p>
+      <div class="rule" style="max-width:200px;margin:0 auto 24px;"></div>
+      <p class="verdict-text">${legend.verdict}</p>
+      <div class="stats-strip">
+        <div class="stat">
+          <span class="stat-val">${totalDrinks}</span>
+          <span class="stat-lbl">Drinks</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">${Math.round(units)}</span>
+          <span class="stat-lbl">Units</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">${unitsPerHour}</span>
+          <span class="stat-lbl">Per Hour</span>
+        </div>
+      </div>
+      <div class="percentile-bar">
+        <div class="bar-label">
+          <span>Mortal</span>
+          <span>Top ${100 - legend.percentile}% of All Time</span>
+          <span>André</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="bar-fill" style="width: 0%"></div>
+        </div>
+      </div>
+      <button class="try-again" onclick="resetForm()">◂ &nbsp; Confess Again</button>
+    </div>
+  `;
+
+  resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  setTimeout(() => {
+    const bar = document.getElementById('bar-fill');
+    if (bar) bar.style.width = legend.percentile + '%';
+  }, 300);
+
+  document.getElementById('calc-form').style.display = 'none';
+}
+
+function resetForm() {
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('result').innerHTML = '';
+  document.getElementById('calc-form').style.display = 'block';
+  document.getElementById('beers').value = 0;
+  document.getElementById('shots').value = 0;
+  document.getElementById('wine').value = 0;
+  document.getElementById('cocktails').value = 0;
+  document.getElementById('duration').value = 4;
+  document.getElementById('dur-val').textContent = '4 hrs';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── ANALYSER ──────────────────────────────────────────────
+
+let currentMedium = 'song';
+let lastAnalysis = null;
+
+function setMedium(type, btn) {
+  currentMedium = type;
+  document.querySelectorAll('.medium-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const placeholders = {
+    song: 'Paste lyrics here…',
+    film: 'Paste transcript, script excerpt, or scene description here…',
+    book: 'Paste the passage or chapter here…'
+  };
+  document.getElementById('source-text').placeholder = placeholders[type];
+}
+
+function updateCharCount(el) {
+  document.getElementById('char-count').textContent = el.value.length.toLocaleString() + ' chars';
+}
+
+async function runAnalysis() {
+  const title = document.getElementById('source-title').value.trim();
+  const text = document.getElementById('source-text').value.trim();
+
+  if (!text) {
+    alert('Please paste some text to analyse.');
+    return;
+  }
+
+  const btn = document.getElementById('analyse-btn');
+  const loading = document.getElementById('loading-state');
+  const resultEl = document.getElementById('analysis-result');
+
+  btn.disabled = true;
+  loading.classList.add('visible');
+  resultEl.classList.remove('visible');
+  resultEl.innerHTML = '';
+
+  const mediumLabels = { song: 'song lyrics', film: 'film/TV transcript or scene', book: 'book or literary passage' };
+
+  const prompt = `You are a meticulous drinks analyst. The user has provided ${mediumLabels[currentMedium]}${title ? ` from "${title}"` : ''}.
+
+Your job: identify and catalogue every drink mentioned, consumed, ordered, poured, or implied in the text. Be thorough and creative — include metaphorical drinks if clearly referring to alcohol, background drinking, drinks bought for others, etc.
+
+Respond ONLY with a valid JSON object, no markdown, no explanation, exactly this shape:
+
+{
+  "totalDrinks": <number — total individual drinks consumed or mentioned>,
+  "totalUnits": <number — estimated alcohol units, using: beer=2.3, shot/spirit=1, wine glass=2.1, cocktail=1.8, champagne=1.5, unknown=1.5>,
+  "breakdown": [
+    { "who": "<character or person, or 'Narrator' if unclear>", "drink": "<what they drank>", "quantity": <number>, "context": "<one brief sentence of context from the text>" }
+  ],
+  "mostDevout": "<name of the character who drank the most>",
+  "signature": "<the single most iconic or interesting drink from the text>",
+  "verdict": "<2-3 sentences of witty editorial commentary on the drinking depicted, in the style of a very dry and learned journal of record>"
+}
+
+If no drinking whatsoever is found, return: { "totalDrinks": 0, "totalUnits": 0, "breakdown": [], "mostDevout": null, "signature": null, "verdict": "This text is entirely dry. Not a drop to be found. One almost admires the restraint." }
+
+Text to analyse:
+---
+${text.slice(0, 8000)}`;
+
+  try {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 1000,
+        messages: [{ role: "user", content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content.map(b => b.text || '').join('');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const analysis = JSON.parse(clean);
+    lastAnalysis = analysis;
+    renderAnalysis(analysis, title);
+  } catch (err) {
+    resultEl.classList.add('visible');
+    resultEl.innerHTML = `<p class="analysis-verdict" style="border-left-color:var(--red)">The census taker has failed. The text may be too complex, or the API unreachable. Please try again.</p>`;
+  } finally {
+    btn.disabled = false;
+    loading.classList.remove('visible');
+  }
+}
+
+function renderAnalysis(a, title) {
+  const resultEl = document.getElementById('analysis-result');
+
+  const breakdownHTML = a.breakdown && a.breakdown.length > 0
+    ? `<div class="drink-log">
+        <p class="drink-log-title">— Full Drink Log —</p>
+        ${a.breakdown.map(d => `
+          <div class="drink-entry">
+            <span class="drink-who">${d.who}</span>
+            <span class="drink-what"><strong>${d.quantity}×</strong> ${d.drink}${d.context ? ` <span style="opacity:0.45;font-style:italic">— ${d.context}</span>` : ''}</span>
+          </div>`).join('')}
+      </div>`
+    : '';
+
+  const sendBtn = a.totalDrinks > 0
+    ? `<button class="send-to-calc" onclick="sendToCalculator(${a.totalUnits})">▸ &nbsp; Run This Through the Scale</button>`
+    : '';
+
+  resultEl.innerHTML = `
+    <div class="rule" style="margin-bottom:28px;"></div>
+    <div class="analysis-tally">
+      <div class="tally-cell">
+        <span class="tally-num">${a.totalDrinks}</span>
+        <span class="tally-lbl">Drinks Total</span>
+      </div>
+      <div class="tally-cell">
+        <span class="tally-num">${a.totalUnits}</span>
+        <span class="tally-lbl">Units</span>
+      </div>
+      <div class="tally-cell">
+        <span class="tally-num">${a.mostDevout ? a.mostDevout.split(' ')[0] : '—'}</span>
+        <span class="tally-lbl">Most Devout</span>
+      </div>
+      <div class="tally-cell">
+        <span class="tally-num" style="font-size:1.1rem;padding-top:6px;">${a.signature || '—'}</span>
+        <span class="tally-lbl">Signature Drink</span>
+      </div>
+    </div>
+    ${breakdownHTML}
+    <p class="analysis-verdict">${a.verdict}</p>
+    ${sendBtn}
+  `;
+
+  resultEl.classList.add('visible');
+  resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function sendToCalculator(units) {
+  // Convert units back to an equivalent number of cocktails for simplicity
+  const equiv = Math.round(units / 1.8);
+  document.getElementById('cocktails').value = equiv;
+  document.getElementById('beers').value = 0;
+  document.getElementById('shots').value = 0;
+  document.getElementById('wine').value = 0;
+  document.getElementById('duration').value = 2;
+  document.getElementById('dur-val').textContent = '2 hrs';
+  document.getElementById('calc-form').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('result').innerHTML = '';
+  document.getElementById('calc-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
