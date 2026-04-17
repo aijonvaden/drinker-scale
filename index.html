@@ -1416,7 +1416,6 @@ ${text.slice(0, 8000)}`;
     renderAnalysis(analysis, title);
   } catch (err) {
     resultEl.classList.add('visible');
-    resultEl.innerHTML = `<p class="analysis-verdict" style="border-left-color:var(--red)">The census taker has failed. The text may be too complex, or the API unreachable. Please try again.</p>`;
   } finally {
     btn.disabled = false;
     loading.classList.remove('visible');
