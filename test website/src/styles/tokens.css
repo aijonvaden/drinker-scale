@@ -1,0 +1,34 @@
+:root {
+  /* Core palette (from the original, slightly extended) */
+  --gold: #c9a84c;
+  --gold-light: #e8c96d;
+  --gold-deep: #a8842f;
+  --cream: #f5f0e8;
+  --dark: #1a1208;
+  --dark-2: #100b04;
+  --amber: #8b5e0a;
+  --red: #8b1a1a;
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Courier Prime', 'Courier New', monospace;
+
+  /* Tier accent bands: cool (mortal) -> warm (legend).
+     Used by emblems and the Hall to grade the whole roster as you climb. */
+  --band-0: #6f8fa3; /* slate    — sober / abstinent */
+  --band-1: #5e8d7e; /* sage     — casual */
+  --band-2: #8a8a55; /* olive    — committed */
+  --band-3: #c08a3a; /* brass    — serious */
+  --band-4: #c9a84c; /* gold     — legendary */
+  --band-5: #c4772e; /* amber    — heroic */
+  --band-6: #a8392a; /* ember    — mythic / André */
+
+  /* Layout & motion */
+  --maxw: 820px;
+  --radius: 2px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --line: rgba(201, 168, 76, 0.4);
+  --line-faint: rgba(201, 168, 76, 0.15);
+  --panel: rgba(255, 255, 255, 0.03);
+  --panel-2: rgba(255, 255, 255, 0.02);
+}
