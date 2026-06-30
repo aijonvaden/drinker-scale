@@ -92,7 +92,7 @@ export const LEGENDS: Legend[] = [
     name: "Noah",
     era: "Book of Genesis; Vintner of the New World, post-Flood",
     motif: "grapes",
-    kind: "mythological",
+    kind: "real",
     minUnits: 4.6,
     maxUnits: 5.2,
     percentile: 23.8,
