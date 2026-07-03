@@ -5,6 +5,7 @@ import { accentForPercentile } from '../lib/emblem'
 import { legendRank } from '../lib/units'
 import { LEGENDS } from '../data/legends'
 import LegendEmblem from './emblems/LegendEmblem'
+import ShopCards from './ShopCards'
 
 const KIND_LABEL: Record<LegendKind, string> = {
   real: 'Real',
@@ -67,6 +68,7 @@ export default function LegendDetail({ legend, onClose }: { legend: Legend; onCl
           <span className="dyk-label">— Did You Know —</span>
           <p className="dyk-text">{legend.fact}</p>
         </div>
+        <ShopCards legendId={legend.id} accent={accent} />
       </motion.div>
     </div>
   )
