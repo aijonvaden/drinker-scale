@@ -36,4 +36,30 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       note: 'Drink it as Wilde did — slowly, ritually, green',
     },
   ],
+  'andre': [
+    {
+      id: 'andre-art-1',
+      title: 'The French Alps Wall Art Poster Print (Black Frame, 20x16)',
+      type: 'collectible',
+      price: '$45.95',
+      url: 'https://amzn.to/4aBfJQf',
+      note: 'Where the Giant was born — the French Alps that made him',
+    },
+    {
+      id: 'andre-apparel-1',
+      title: 'Andre The Giant — That’s A Lot Of Beer T-Shirt',
+      type: 'apparel',
+      price: '$19.95',
+      url: 'https://amzn.to/4wpZgXC',
+      note: 'It is, in fact, a lot of beer.',
+    },
+    {
+      id: 'andre-sticker-1',
+      title: 'André The Giant Has a Posse Vinyl Bumper Sticker (5")',
+      type: 'collectible',
+      price: '$4.95',
+      url: 'https://amzn.to/3Tgux0F',
+      note: 'The iconic Shepard Fairey image.',
+    },
+  ],
 }
