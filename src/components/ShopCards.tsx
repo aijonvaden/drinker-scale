@@ -32,8 +32,8 @@ export default function ShopCards({ legendId, accent }: { legendId: string; acce
             </span>
             <span className="shop-card-title">{item.title}</span>
             {item.note && <span className="shop-card-note">{item.note}</span>}
-            <span className="shop-card-price" style={{ color: accent }}>{item.price}</span>
-            <span className="shop-card-cta">View on Amazon ⇒</span>
+
+            <span className="shop-card-cta">Visit the Purveyor →</span>
           </a>
         ))}
       </div>
