@@ -2611,11 +2611,11 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
     },
     {
       id: 'haddock-glasses-1',
-      title: 'Spinning Whiskey Glasses Set of 4, Tilted Bourbon Scotch Tumblers',
+      title: 'Dragon Glassware Clear Diamond Whiskey Glasses, 10oz, Set of 2',
       type: 'drinkware',
       price: '',
-      url: 'https://link.amazon/B0gLkeslC',
-      note: 'Whisky that spins. Haddock would have tested this thoroughly.',
+      url: 'https://link.amazon/B0fOMtNv0',
+      note: 'Heavy base, won’t tip. Built for rough seas.',
     },
   ],
   'gambrinus': [
