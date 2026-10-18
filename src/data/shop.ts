@@ -4797,7 +4797,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B01A0HJom',
-      note: 'Hitchcock hosted legendary dinner parties. The tablecloth matters.',
+      note: 'Hitchcock shopped at Williams-Sonoma in San Francisco during the filming of Vertigo. The tablecloth matters.',
     },
     {
       id: 'hitch-bio-1',
@@ -4821,7 +4821,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0aHw32Dz',
-      note: 'Black. As Hitchcock preferred things.',
+      note: 'Hitchcock frequented the Williams-Sonoma on Sutter Street during Vertigo. He liked things precise and well-appointed.',
     },
     {
       id: 'hitch-titian-1',
@@ -4829,7 +4829,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0ikf7fGW',
-      note: 'Hitchcock’s obsession with the blonde ideal had art historical roots.',
+      note: 'The Titian Venus with a Mirror hangs on Norman Bates’ parlor wall in Psycho. The painting he peeks through is a different one entirely.',
     },
     {
       id: 'hitch-ovenmitt-1',
@@ -4837,7 +4837,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0bhCYPfd',
-      note: 'For the kitchen he never cooked in. He had staff for that.',
+      note: 'Another Williams-Sonoma find from his San Francisco years. He shopped there seriously during Vertigo.',
     },
     {
       id: 'hitch-knives-1',
@@ -4917,7 +4917,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0hLCS4qh',
-      note: 'Hitchcock kept a large garden at his California home. For the serious fan.',
+      note: 'Hitchcock’s father was a greengrocer in Leytonstone, East London. The vegetable garden at his California home was a direct inheritance.',
     },
     {
       id: 'hitch-sticker-1',
