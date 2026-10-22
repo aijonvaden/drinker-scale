@@ -42,7 +42,7 @@ export default function HallOfLegends({ onClose, onSelect, currentId }: Props) {
             ×
           </button>
           <p className="masthead-label">— The Hall of Legends —</p>
-          <h2 className="hall-title">One Hundred and Six Immortals of Intake</h2>
+          <h2 className="hall-title">One Hundred and Sixteen Immortals of Intake</h2>
           <p className="hall-sub">
             From the soberly sensible to the wonder of the world. Tap any name for the full record.
           </p>
