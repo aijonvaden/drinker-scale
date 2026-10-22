@@ -4797,7 +4797,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B01A0HJom',
-      note: 'Hitchcock shopped at Williams-Sonoma in San Francisco during the filming of Vertigo. The tablecloth matters.',
+      note: "Hitchcock was a devoted Williams-Sonoma shopper in San Francisco, especially while filming Vertigo.",
     },
     {
       id: 'hitch-bio-1',
@@ -4821,7 +4821,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0aHw32Dz',
-      note: 'Hitchcock frequented the Williams-Sonoma on Sutter Street during Vertigo. He liked things precise and well-appointed.',
+      note: "Jet black stripes, fitting for a man who liked his kitchen as dark as his films.",
     },
     {
       id: 'hitch-titian-1',
@@ -4829,7 +4829,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0ikf7fGW',
-      note: 'The Titian Venus with a Mirror hangs on Norman Bates’ parlor wall in Psycho. The painting he peeks through is a different one entirely.',
+      note: "The Venus with a Mirror that hangs on Norman Bates’ parlor wall in Psycho.",
     },
     {
       id: 'hitch-ovenmitt-1',
@@ -4837,7 +4837,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: 'collectible',
       price: '',
       url: 'https://link.amazon/B0bhCYPfd',
-      note: 'Another Williams-Sonoma find from his San Francisco years. He shopped there seriously during Vertigo.',
+      note: "Hitchcock loved to eat and to host. Someone else wore the mitts.",
     },
     {
       id: 'hitch-knives-1',
