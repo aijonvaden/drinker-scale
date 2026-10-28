@@ -6,6 +6,8 @@ export default function Footer() {
       A reimagining of the Legendary Drinker Scale — 118 of history's great consumers, real and imagined.
       <br />
       © 2026 · Built for the love of a good story
+      <br />
+      As an Amazon Associate I earn from qualifying purchases.
     </footer>
   )
 }
