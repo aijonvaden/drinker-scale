@@ -289,7 +289,7 @@ export const LEGENDS: Legend[] = [
     maxUnits: 24.5,
     percentile: 57.5,
     verdict: "James Baldwin wrote about love, race, and the cost of both, and did much of his early thinking in Paris cafés, where the day’s coffee gave way, in his own account, to “rather a lot of alcohol” by evening. He was a drinker in Paris, a drinker in Istanbul, and a drinker wherever there was a table, a conversation, and someone worth arguing with. The drink was never the subject; it was the lamp by which the talk went on. If you have been matched to Baldwin, you take the long night seriously, say the true thing at the end of it, and write it down in the morning.",
-    fact: "In his 1955 essay “Equal in Paris,” Baldwin described spending his days at the Café de Flore with a notebook, on coffee and then, as evening came on, on a good deal of alcohol. After arriving in Istanbul in 1961 he lived there on and off for about a decade, with the Park Hotel among his favourite neighbourhood spots, and he finished the novel Another Country there.",
+    fact: "In his 1955 essay “Equal in Paris,” Baldwin described spending his days at the Café de Flore with a notebook, on coffee and then, as evening came on, on a good deal of alcohol. After arriving in Istanbul in 1961 he lived there on and off for about a decade and finished the novel Another Country there. He became a regular at the Divan Hotel bar, where his friend Avni Salbaş reportedly served the city’s best drinks, and the Park Hotel was another favourite neighbourhood spot.",
   },
   {
     id: "chumbawamba",
