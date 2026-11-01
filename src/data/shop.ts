@@ -4981,7 +4981,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       type: "drinkware",
       price: '',
       url: "https://link.amazon/B08z4ZbBK",
-      note: "Chasen’s, a Hollywood restaurant he was known to frequent.",
+      note: "Chasen’s Table Two was Hitchcock’s Thursday-night booth for decades, champagne punch and all.",
     },
   ],
   'calamity-jane': [
