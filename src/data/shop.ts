@@ -5689,11 +5689,11 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
     },
     {
       id: "holiday-gloves-1",
-      title: "SAVITA Long Satin Gloves, 21 Inch",
+      title: "Stretchy 1920s Opera Gloves for Evening Dancing Parties",
       type: "apparel",
       price: '',
       url: "https://link.amazon/B0fSXVBBN",
-      note: "Long satin gloves, in the manner of the era.",
+      note: "Long evening gloves, in the glamorous manner of the era.",
     },
     {
       id: "holiday-dress-1",
@@ -6060,7 +6060,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       title: "Sammy Davis Jr. at the Cocoanut Grove [Live]",
       type: "collectible",
       price: '',
-      url: "https://link.amazon/B07rwEaJ5",
+      url: "https://link.amazon/B06jdgDsc",
       note: "A live album, recorded at the Cocoanut Grove.",
     },
     {
@@ -6068,7 +6068,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       title: "Whiskey Glasses Set of 6, Bourbon & Cocktail Rocks Glasses",
       type: "drinkware",
       price: '',
-      url: "https://link.amazon/B06jdgDsc",
+      url: "https://link.amazon/B0cuukn0q",
       note: "Rocks glasses, for Jack Daniel’s and Coke.",
     },
     {
@@ -6076,7 +6076,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       title: "ART.COM Wall Art Print: Sands Hotel, Las Vegas, Nevada, 24x16\"",
       type: "collectible",
       price: '',
-      url: "https://link.amazon/B0cuukn0q",
+      url: "https://link.amazon/B0hkhG2kw",
       note: "The Sands, where the Rat Pack held court.",
     },
     {
@@ -6084,7 +6084,7 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       title: "Larger Welcome to Las Vegas Beer Bar Neon Sign, 24x18\", Dimmable LED",
       type: "collectible",
       price: '',
-      url: "https://link.amazon/B0hkhG2kw",
+      url: "https://link.amazon/B0jlrWcIK",
       note: "For the Vegas-era bar.",
     },
     {
@@ -6174,6 +6174,14 @@ export const LEGEND_SHOP: Record<string, ShopItem[]> = {
       price: '',
       url: "https://link.amazon/B0bLXd92W",
       note: "A fedora, for the Rat Pack look.",
+    },
+    {
+      id: "davis-ratpack-1",
+      title: "The Rat Pack: The Platinum Collection, Silver Limited Edition Triple Vinyl",
+      type: "collectible",
+      price: '',
+      url: "https://link.amazon/B01OC5O60",
+      note: "The Rat Pack together, on silver vinyl.",
     },
   ],
 }
